@@ -6,10 +6,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-unsigned-ipa:
-    name: Build SolSniperAI-Unsigned.ipa
-    runs-on: macos-15
-
+  build-web:
+    name: Build Web Bundle (Fast Linux)
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
@@ -19,14 +18,42 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install Dependencies & Build Web Bundle
+      - name: Install Dependencies & Build Web
         run: |
           npm install --legacy-peer-deps --no-audit --no-fund
           npm install react-is --legacy-peer-deps --no-audit --no-fund
           npm run build
 
-      - name: Sync Capacitor iOS Project
+      - name: Upload Web Build (dist)
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: dist
+          retention-days: 1
+
+  build-unsigned-ipa:
+    name: Build SolSniperAI-Unsigned.ipa
+    needs: build-web
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Download Web Build (dist)
+        uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: dist
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Capacitor CLI & Sync iOS
         run: |
+          npm install --legacy-peer-deps --no-audit --no-fund
           npx cap sync ios
 
       - name: Resolve Swift Package Dependencies & Build Unsigned App
