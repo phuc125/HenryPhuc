@@ -8,7 +8,7 @@ on:
 jobs:
   build-unsigned-ipa:
     name: Build SolSniperAI-Unsigned.ipa
-    runs-on: macos-latest
+    runs-on: macos-15
 
     steps:
       - name: Checkout Source
@@ -21,7 +21,7 @@ jobs:
 
       - name: Install Dependencies & Build Web Bundle
         run: |
-          npm install
+          npm install --no-audit --no-fund
           npm run build
 
       - name: Sync Capacitor iOS Project
