@@ -1,0 +1,6 @@
+{
+  "name": "Solana AI-Quant Sniper Studio",
+  "description": "Production-grade AI-Quant Multi-DEX Solana Memecoin Sniper & 5-Layer Anti-Rug Trading Bot with Paper & Live execution, Telegram control UI, and downloadable TypeScript project package.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

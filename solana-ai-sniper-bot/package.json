@@ -1,0 +1,40 @@
+{
+  "name": "solana-ai-sniper-bot",
+  "version": "1.0.0",
+  "description": "AI-Quant Multi-DEX Solana Memecoin Sniper & 5-Layer Anti-Rug Trading Bot with Paper & Live Execution, Mobile App API, and Wi-Fi/4G Low-Data Mode",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "ts-node --transpile-only src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/supervisor.js",
+    "start:direct": "node dist/index.js",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "test": "tsx --test src/__tests__/*.test.ts"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@jup-ag/api": "^6.0.48",
+    "@raydium-io/raydium-sdk-v2": "^0.2.85-alpha",
+    "@solana/spl-token": "^0.4.12",
+    "@solana/web3.js": "^1.98.0",
+    "axios": "^1.7.9",
+    "better-sqlite3": "^11.8.1",
+    "bn.js": "^5.2.5",
+    "bs58": "^6.0.0",
+    "chart.js": "^4.4.8",
+    "chartjs-node-canvas": "^5.0.0",
+    "dotenv": "^16.4.7",
+    "jszip": "^3.10.1",
+    "technicalindicators": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/bn.js": "^5.1.6",
+    "@types/node": "^22.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
